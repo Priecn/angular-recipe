@@ -1,15 +1,22 @@
 <div class="row">
   <div class="col-md-10">
-    <app-shopping-edit></app-shopping-edit>
+    <app-shopping-edit
+      (updateIngredientListEvent)="updateIngredientList($event)"></app-shopping-edit>
   </div>
 </div>
-
+<hr>
 <div class="row">
     <div class="col-md-10">
       <div class="row">
         <div class="col-md-3" *ngFor="let ingredient of ingredients">
           <div class="card rectangle">
-            <h6 class="card-title text-center mt-md-2">{{ingredient.name}} ({{ingredient.amount}})</h6>
+            <h6 class="card-title">
+                {{ingredient.id}} | {{ingredient.name}} ({{ingredient.amount}})
+                <div class="float-right">
+                    <a> <li class="fa fa-edit text-info"></li> </a>&nbsp;
+                    <a (click)="removeIngredient(ingredient.id)"> <li class="fa fa-trash text-danger"></li> </a>
+                </div>
+            </h6>
           </div>
         </div>
       </div>

@@ -9,3 +9,11 @@
 .rectangle {
     border-radius: 0px;
 }
+
+a {
+    cursor: pointer;
+}
+
+h6.card-title {
+    margin: 5px 5px 5px 5px;
+}

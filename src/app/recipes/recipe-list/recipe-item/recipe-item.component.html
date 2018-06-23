@@ -1,1 +1,17 @@
-
+<a role="button" (click)="onRecipeClicked()">
+    <div class="card rectangle">
+        <img [src]="recipe.imagePath" [alt]="recipe.name" class="card-img-top">
+        <div class="card-body">
+            <h6 class="card-title">{{recipe.name}}</h6>
+            <p class="card-text">
+                {{recipe.description}}
+            </p>
+        </div>
+                
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <span class="fa fa-star color" *ngFor="let r of createRatingArray(recipe.ratings)"></span>
+            </li>
+        </ul>
+    </div>
+</a>

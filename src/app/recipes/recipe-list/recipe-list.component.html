@@ -12,23 +12,10 @@
 <div class="row">
     <div class="col-md-10">
             <div class="row">
-                    <div class="col-md-6" *ngFor="let recipe of recipes">
-                            <div class="card rectangle">
-                                <img [src]="recipe.imagePath" [alt]="recipe.name" class="card-img-top">
-                                <div class="card-body">
-                                    <h6 class="card-title">{{recipe.name}}</h6>
-                                    <p class="card-text">
-                                        {{recipe.description}}
-                                    </p>
-                                </div>
-                                
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <span class="fa fa-star color" *ngFor="let r of createRatingArray(recipe.ratings)"></span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                <app-recipe-item *ngFor="let recipe of recipes"
+                                [recipe]="recipe" class="col-md-6"
+                                (recipeSelectedEvent)="onRecipeSelect(recipe)">
+                </app-recipe-item>
             </div>
     </div>
 </div>
