@@ -18,18 +18,14 @@
                    #amountInput/>
         </div>
 
-        <input type="hidden"
-               *ngIf="ingredient"
-               [value]="ingredient.id"
-               #hiddenIdInput/>
+        <input type="hidden" #hiddenIdInput/>
       </div>
 
       <div class="form-row">
           <div class="col">
               <button class="btn btn-primary rectangle float-right"
                       type="button"
-                      (click)="onUpdateIngredientList(nameInput, amountInput)"
-                      >Save</button>
+                      (click)="onUpdateIngredientList()">Save</button>
           </div>
       </div>
         

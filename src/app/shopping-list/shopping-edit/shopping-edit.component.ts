@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ShoppingListService } from '../services/shopping-list.service';
 import { Ingredient } from '../../shared/model/ingredient.model';
 
 
@@ -10,20 +11,29 @@ import { Ingredient } from '../../shared/model/ingredient.model';
 export class ShoppingEditComponent implements OnInit {
 
   @ViewChild('hiddenIdInput') idRef: ElementRef;
-  @Output() updateIngredientListEvent = new EventEmitter<Ingredient>();
+  @ViewChild('nameInput') nameRef: ElementRef;
+  @ViewChild('amountInput') amountRef: ElementRef;
 
-  constructor() { }
+  constructor(private shoppingListService: ShoppingListService) { }
 
   ngOnInit() {
+    this.shoppingListService.editIngredientEvent
+        .subscribe((ingredient: Ingredient) => {
+          this.idRef.nativeElement.value = ""+ingredient.id;
+          this.nameRef.nativeElement.value = ingredient.name;
+          this.amountRef.nativeElement.value = ""+ingredient.amount;
+        });
   }
 
-  onUpdateIngredientList(name: HTMLInputElement, amount: HTMLInputElement){
-    var tempId = this.idRef ? this.idRef.nativeElement.value : undefined;
-    this.updateIngredientListEvent.emit(
-      new Ingredient(tempId, name.value, +amount.value)
+  onUpdateIngredientList(){
+    var name = this.nameRef.nativeElement.value;
+    var amount = this.amountRef.nativeElement.value;
+    var tempId = this.idRef.nativeElement.value ? +this.idRef.nativeElement.value: undefined;
+    this.shoppingListService.updateIngredientList(
+      new Ingredient(tempId, name, +amount)
     );
-    name.value = "";
-    amount.value = "";
+    this.nameRef.nativeElement.value = "";
+    this.amountRef.nativeElement.value = "";
   }
 
 }
