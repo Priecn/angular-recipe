@@ -15,7 +15,7 @@ export class RecipeListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(Array(5).fill(0));
+    //console.log(Array(5).fill(0));
     this.recipes = [
       new Recipe(0, 'Tandoori Chicken', 'Grilled Chicken', 'http://via.placeholder.com/500x300', 5),
       new Recipe(1, 'Grilled Fish', 'Grilled Fish', 'http://via.placeholder.com/500x300', 5),
