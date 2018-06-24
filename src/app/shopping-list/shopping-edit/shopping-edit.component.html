@@ -1,20 +1,23 @@
 <div class="row">
   <div class="col-md-8">
-    <form [formGroup]="ingredientForm" (ngSubmit)="onUpdateIngredientList()">
+    <form (ngSubmit)="onUpdateIngredientList()" #ingredientForm="ngForm">
       <div class="form-row">
         <div class="form-group col-md-10">
           <label for="name">Name</label>
           <input type="text" 
                  class="form-control rectangle"
                  id="name"
-                 formControlName="name"/>
-          <div *ngIf="ingredientForm.get('name').touched
-                      && ingredientForm.get('name').invalid"
+                 name="name"
+                 ngModel
+                 required
+                 #name="ngModel"/>
+          <div *ngIf="name.touched
+                      && name.invalid"
                 class="invalid-feedback d-block">
             <p>Ingredient name is required</p>
           </div>
-          <div *ngIf="ingredientForm.get('amount').touched
-                      && ingredientForm.get('amount').invalid"
+          <div *ngIf="amount.touched
+                      && amount.invalid"
                 class="invalid-feedback d-block">
               <p>Amount should be greater than 0.</p>
           </div>
@@ -25,10 +28,14 @@
             <input type="number"
                    class="form-control rectangle"
                    id="amount"
-                   formControlName="amount"/>
+                   name="amount"
+                   ngModel
+                   required
+                   min="1"
+                   #amount="ngModel"/>
         </div>
 
-        <input type="hidden" formControlName="id"/>
+        <input type="hidden" name="id" ngModel #id="ngModel"/>
       </div>
 
       <div class="form-row">
@@ -36,7 +43,9 @@
               <button class="btn btn-primary rectangle float-right"
                       type="submit"
                       [disabled]="!ingredientForm.touched || !ingredientForm.valid">
-                      {{ingredientForm.get('id').value === null ? 'Save' : 'Update'}}
+                      {{ id.value !== "" 
+                          && id.value !== null ?
+                      'Update' : 'Save'}}
               </button>
           </div>
       </div>
