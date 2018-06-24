@@ -24,9 +24,9 @@
       <div class="button-group float-right" appDropdown>
           <button class="btn btn-primary dropdown-toggle rectangle" type="button">Manage Recipe</button>
           <div class="dropdown-menu dropdown-menu-right">
-            <a href="#" class="dropdown-item" (click)="addAllIngredientsToShoppingList(recipe.ingredients)">Add All Ingredients</a>
-            <a href="#" class="dropdown-item">Edit Recipe</a>
-            <a href="#" class="dropdown-item">Remove Recipe</a>
+            <a role="button" class="dropdown-item" (click)="addAllIngredientsToShoppingList(recipe.ingredients)">Add All Ingredients</a>
+            <a role="button" class="dropdown-item" [routerLink]="['edit']">Edit Recipe</a>
+            <a role="button" class="dropdown-item">Remove Recipe</a>
           </div>
       </div>
       

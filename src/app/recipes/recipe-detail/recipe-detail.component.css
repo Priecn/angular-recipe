@@ -1,3 +1,7 @@
 .rectangle {
     border-radius: 0px;
 }
+
+a {
+    cursor: pointer;
+}

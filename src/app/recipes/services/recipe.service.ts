@@ -1,10 +1,8 @@
 import { Recipe } from "../models/recipe.model";
-import { EventEmitter } from "@angular/core";
 import { Ingredient } from "../../shared/model/ingredient.model";
 
 export class RecipeService {
 
-    recipeSelectEvent = new EventEmitter<Recipe>();
 
     private recipes: Recipe[] = [
         new Recipe(0, 'Tandoori Chicken', 'Grilled Chicken',
@@ -36,5 +34,9 @@ export class RecipeService {
 
     getAllRecipes(): Recipe[] {
         return this.recipes.slice();
+    }
+
+    getRecipeById(id: number) {
+        return this.recipes.find((recipe: Recipe) => recipe.id === id);
     }
 }

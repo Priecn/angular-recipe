@@ -15,5 +15,10 @@ p.card-text{
 }
 
 a {
+    color: #000;
     cursor: pointer;
+}
+
+a:hover {
+    text-decoration: none;
 }

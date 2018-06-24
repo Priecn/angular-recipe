@@ -1,9 +1,10 @@
 <div class="row">
     <div class="col-md-10">
-        <button class="btn btn-success rectangle">
+        <button role="button" class="btn btn-success rectangle"
+           (click)="onClickAddRecipe()">
             New Recipe
             <li class="fa fa-plus"></li>
-        </button>
+    </button>
     </div>
 </div>
 
@@ -13,7 +14,8 @@
     <div class="col-md-10">
             <div class="row">
                 <app-recipe-item *ngFor="let recipe of recipes"
-                                [recipe]="recipe" class="col-md-6">
+                                [recipe]="recipe"
+                                class="col-md-6">
                 </app-recipe-item>
             </div>
     </div>
