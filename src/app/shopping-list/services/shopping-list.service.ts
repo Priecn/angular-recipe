@@ -34,7 +34,7 @@ export class ShoppingListService {
     }
 
     updateIngredientList(ingredient: Ingredient){
-        if (ingredient.id === undefined)
+        if (ingredient.id === null)
             this.addIngredient(ingredient);
         else
             this.updateIngredient(ingredient);
