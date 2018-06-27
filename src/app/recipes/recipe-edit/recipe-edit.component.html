@@ -1,3 +1,115 @@
-<p>
-  recipe-edit works!
-</p>
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="recipeForm" (ngSubmit)="onEditRecipeLIst()">
+      <input type="hidden" formControlName="id"/>
+      <div class="form-row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="name">Recipe Name</label>
+                <input type="text" class="form-control rectangle" 
+                       formControlName="name" id="name"/>
+            </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="imagePath">Image Path</label>
+                <input type="url" class="form-control rectangle" 
+                       formControlName="imagePath" id="imagePath"
+                       #imagePath/>
+            </div>
+        </div>
+      </div>
+      
+      <div class="form-row" *ngIf="imagePath.value">
+        <div class="col-md-12" >
+            <img [src]="imagePath.value" class="image-fluid" style="height: 300px; width: 630px;"/>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control rectangle" id="description"
+                          formControlName="description" rows="6"></textarea>
+            </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Add Ingredients below</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+                  Ingredient Name
+                </div>
+                <div class="col-md-2">
+                  Amount
+                </div>
+              </div>
+        </div>
+      </div>
+
+      <div class="form-row" formArrayName="ingredients">
+          <div class="col-md-12">
+            <div class="row" style="margin-top: 2px"
+                 *ngFor="let ingredient of recipeForm.get('ingredients').controls; let i=index"
+                 [formGroupName]="i">
+                 <input type="hidden" formControlName="id"/>
+                <div class="col-md-8">
+                  <input type="text"
+                         formControlName="name" 
+                         class="form-control rectangle"/>
+                </div>
+                <div class="col-md-2">
+                    <input type="number"
+                           formControlName="amount"
+                           class="form-control rectangle"/>
+                </div>
+                <div class="col-md-1">
+                    <button type="button"
+                            class="btn btn-danger rectangle"
+                            (click)="removeIngredient(i)">
+                      <li class="fa fa-trash"></li>
+                    </button>
+                </div>
+            </div>
+          </div>
+      </div>
+      <hr>
+      <div class="form-row">
+          <div class="col-md-12">
+              <button (click)="onAddIngredient()"
+                      type="button" class="rectangle btn btn-primary float-right">
+                 Add More Ingredient <li class="fa fa-plus"></li>
+              </button>
+          </div>
+      </div>
+
+      <div class="form-row">
+          <div class="col-md-12">
+              <div class="btn-group">
+                  <button type="submit"
+                          class="rectangle btn btn-primary"
+                          [disabled]="!recipeForm.valid">
+                    Save
+                  </button>
+                  <button type="button" 
+                          class="rectangle btn btn-danger"
+                          (click)="onCacelChange()">
+                    Cancel
+                  </button>
+              </div>
+          </div>
+      </div>
+      
+    </form>
+  </div>
+</div>
